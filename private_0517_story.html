@@ -1,22 +1,17 @@
 <!DOCTYPE HTML>
-<!--
-	Ethereal by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
 		<script>
-			// 立即检查令牌
 			(function() {
 				const token = sessionStorage.getItem('access_token');
 				if (token !== 'entry_granted_0517') {
-					// 清除可能存在的伪造令牌
 					sessionStorage.clear();
 					window.location.href = "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html";
 				}
 			})();
 		</script>
+
+		
 		<title>我是你爹</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -26,14 +21,9 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
-
-		<!-- Page Wrapper -->
 			<div id="page-wrapper">
-
-				<!-- Wrapper -->
 					<div id="wrapper">
 
-						<!-- Panel (Banner) -->
 							<section class="panel banner right">
 								<div class="content color0 span-3-75">
 									<h1 class="major" style="font-size: 2.4rem;">草食章鱼&amp;汉谟拉比<br />
@@ -48,7 +38,6 @@
 								</div>
 							</section>
 
-						<!-- Panel (Spotlight) -->
 							<section class="panel spotlight medium right" id="first">
 								<div class="content span-7">
 									<h2 class="major" style="font-size: 2.4rem;">相遇已是上上签</h2>
@@ -111,7 +100,6 @@
     </div>
 </section>
 
-						<!-- Panel (Spotlight) -->
 							<section class="panel spotlight large left">
 								<div class="content span-3" style="width: 18rem; max-width: 100%;"">
 									<h2 class="major" style="font-size: 2.4rem; ">好正经啊编不出来了</h2>
@@ -121,8 +109,6 @@
 									<img src="images/pic03.jpg" alt="" />
 								</div>
 							</section>
-
-						<!-- Panel -->
 							<section class="panel">
 								<div class="intro color2" style="width: 28rem; max-width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
 									<h2 class="major" style="font-size: 2.4rem; width: 100%; text-align: left;">照片墙</h2>
@@ -148,7 +134,6 @@
 								</div>
 							</section>
 
-						<!-- Panel -->
 							<section class="panel color4-alt">
 								<div class="intro color4" style="width:25rem">
 									<h2 class="major">写在后面的话</h2>
@@ -181,7 +166,6 @@
 								</div>
 							</section>
 
-						<!-- Panel -->
 							<section class="panel color2-alt">
 								<div class="intro color2">
 									<h2 class="major">想不出来写啥了</h2>
@@ -486,20 +470,14 @@
     })();
 </script>
 </div>
-									
-									
-									
-									
+							
 							</section>
-
-						<!-- Copyright -->
 							<div class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</div>
 
 					</div>
 
 			</div>
 
-		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
@@ -510,16 +488,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('guestbook-form');
     const messageList = document.getElementById('message-list');
 
-    // 1. 页面加载时：从 localStorage 读取并渲染已有留言
     const loadMessages = () => {
         const savedMessages = JSON.parse(localStorage.getItem('my_guestbook_messages')) || [];
-        messageList.innerHTML = ''; // 清空当前列表
+        messageList.innerHTML = '';
         savedMessages.forEach(msg => {
             renderMessage(msg.name, msg.content, msg.date);
         });
     };
 
-    // 2. 渲染单条留言的函数 (保持你原来的 HTML 结构)
     const renderMessage = (name, content, date) => {
         const messageBox = document.createElement('div');
         messageBox.className = 'box';
@@ -528,35 +504,32 @@ document.addEventListener('DOMContentLoaded', () => {
             <p><strong>${name}:</strong> ${content}</p>
             <span style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">${date}</span>
         `;
-        // 新留言放在最上面
+
         messageList.insertBefore(messageBox, messageList.firstChild);
     };
 
-    // 3. 提交表单时的逻辑
+
     form.addEventListener('submit', (e) => {
-        e.preventDefault(); // 阻止页面刷新
+        e.preventDefault(); 
 
         const nameInput = document.getElementById('gb-name');
         const messageInput = document.getElementById('gb-message');
         
         if (!nameInput.value || !messageInput.value) return;
 
-        const date = new Date().toISOString().split('T')[0]; // 获取当前日期 YYYY-MM-DD
+        const date = new Date().toISOString().split('T')[0]; 
         const newMsg = {
             name: nameInput.value,
             content: messageInput.value,
             date: date
         };
 
-        // 保存到 localStorage
         const savedMessages = JSON.parse(localStorage.getItem('my_guestbook_messages')) || [];
         savedMessages.push(newMsg);
         localStorage.setItem('my_guestbook_messages', JSON.stringify(savedMessages));
 
-        // 实时同步到右侧墙上
         renderMessage(newMsg.name, newMsg.content, newMsg.date);
 
-        // 清空输入框
         form.reset();
     });
 
